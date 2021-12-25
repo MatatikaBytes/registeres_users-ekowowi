@@ -1,0 +1,400 @@
+version: 19
+extractors:
+- name: tap-matatika-sit
+  namespace: tap_matatika_sit
+  hidden: false
+  label: Matatika SIT
+  description: Test extractor based on tap-spreadsheets-anywhere used during Matatika
+    SIT runs
+  docs: https://meltano.com/plugins/extractors/spreadsheets-anywhere.html
+  repo: https://github.com/ets/tap-spreadsheets-anywhere
+  pip_url: git+https://github.com/ets/tap-spreadsheets-anywhere.git
+  executable: tap-spreadsheets-anywhere
+  capabilities:
+  - state
+  - discover
+  - catalog
+  settings:
+  - name: tables
+    kind: array
+    value: '[{"path":"https://meltano.com/files","name":"gitflixusers","pattern":"GitFlixUsers.csv","start_date":"2021-01-01T00:00:00Z","key_properties":["id"],"format":"csv"}]'
+    description: An array holding json objects that each describe a set of targeted
+      source files. See docs for details.
+    protected: false
+- name: tap-solarvista
+  namespace: tap_solarvista
+  hidden: false
+  label: Solarvista Live
+  description: "\n![Solarvista Live](data:image/png;base64,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)\n\
+    \nSolarvista Live is a Field Service Management platform to manage, plan, and\
+    \ mobilise your engineers.  The Matatika Solarvista Live\nimport will extract\
+    \ Solarvista data into your Matatika data store, giving you instant insights into\
+    \ revenue, projects, work items, and engineer performance.\n\n\n## Prerequisites\n\
+    \nBefore importing data from Solarvista Live you will need to have performed the\
+    \ initial setup in Solarvista.\n\n[Solarvista Live Prerequisites](https://www.matatika.com/docs/data-sources/tap-solarvista/prerequisites)\n\
+    \n\n## Data source settings\n\n### Account\n\nSolarvista API `account`\n\nTo get\
+    \ your `account` id you will need to follow the steps that are linked in our [Prerequisites](https://www.matatika.com/docs/data-sources/tap-solarvista/prerequisites)\
+    \ section.\n\n### ClientId\n\nSolarvista API `clientId`\n  \nTo get your `clientId`\
+    \ you will need to follow the steps that are linked in our [Prerequisites](https://www.matatika.com/docs/data-sources/tap-solarvista/prerequisites)\
+    \ section.\n  \n### Code\n  \nSolarvista API `code`\n  \nTo get your `code` you\
+    \ will need to follow the steps that are linked in our [Prerequisites](https://www.matatika.com/docs/data-sources/tap-solarvista/prerequisites)\
+    \ section.\n  \n### Datasources\n  \nLeave this field blank to accept the default\
+    \ Solarvista datasources or customise the type of data to sync, we support:\n\
+    - `customer`\n- `site`\n- `equipment`\n- `work-item`\n- `work-item-history`\n\
+    - `activity`\n- `users`\n- `territory`\n- `project`\n- `appointment`\n- `skill`\n\
+    \  \n  \n### Start Date\n  \nProviding a start date allows you to set how much\
+    \ historical data you wish to import into your workspace. \n  \nThis date has\
+    \ to be in the ISO-8601 date format, see the example below.\n  \nFormat: `YYYY-MM-DDTHH:MM:SSZ`\n\
+    Example: `2020-10-01T13:12:11Z`\n\n\n## Learn more\n\nLearn more about the Solarvista\
+    \ Live data source\n\n[Solavista Live Extractor Documentation](https://www.matatika.com/docs/data-sources/tap-solarvista)"
+  variant: matatika
+  docs: https://www.matatika.com/docs/data-sources/tap-solarvista/
+  repo: https://github.com/Matatika/tap-solarvista
+  pip_url: git+https://github.com/Matatika/tap-solarvista.git
+  capabilities:
+  - state
+  settings:
+  - name: clientId
+    kind: string
+    label: Client ID
+    protected: false
+  - name: code
+    kind: password
+    label: Code
+    protected: false
+  - name: datasources
+    kind: string
+    label: Datasources
+    protected: false
+  - name: account
+    kind: string
+    label: Account
+    protected: false
+  - name: start_date
+    kind: date_iso8601
+    label: Start Date
+    protected: false
+- name: tap-spreadsheets-anywhere
+  namespace: tap_spreadsheets_anywhere
+  hidden: false
+  label: Spreadsheets Anywhere
+  description: "![Spreadsheets Anywhere](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAQAAAAHUWYVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfiDBYRIzSlI7/4AAAD20lEQVR42u3dP2xNUQDH8V+bR15R1UhI2loYDBaJRJBIbGYSWzehCY00EWGwWhoThkpIxMRGQxgawdhEjGjUIv6FMpSm/59BkN40Tfuc5/7OOd/vW3Rw8t79vHfPPb2HJxEREREREREREcVRU+Dx2rTR+NVO6GNOuFv0UDOqWT8+qC/4m9C09XprjvH7cTkPkvORcJiTNAcbaXdEb55eXXIlCQeyIarPc68GPEmalWvHPUnyBTElqTRs5PeatHiFHaouQTKtU6ql+X57WriS2W/6vIqPq16fkpxPWZYnLkDMSPIDGV2UxGZdkh9Ijwad1yX5gUzryKIkJieuHOcQa5I8J3VjklyvsmxJ8r3sNSXJeR1iSZL3wtCQJPeVuh0JvzoxIwHEjAQQMxJAzEgAMSMBxIwEEDMSQMxIADEjAcSMBBAzEkDMSAAxIwHEjAQQMxJAzEgAMSMBxIykkt3h7dDWOv7WOXVq1yIko+p3faGx/vuQf3uMq4VTllPrtAMQr/iEpF36IGOAeDUIiFc3dSemp5v+OmROh3VU3eoM9OZb6t+9sw5J73VylcUcQoAAQoAAQoAAQoAAQoAQIIAQIClU9v2QdrVHdsSKd0OK+7xm9U5zDk905fcJunRP8xF9p8JyH590MsZPyFo91rYkzzqbdEVTuhbbHHImUY5fXaz3Rm95IHuTnpvb6t3RWB5Ii9JuDZe9rEMovXXI3+r5vpHiHql6v7MkxDh2+7VWug4Jsb8p1B4po+fCKYs5hAABhAABhAABhAABhAAhQAAhQAAhQFLP545hPf/TWzXAGKHGqaYGcstkjJDjcMpiDiFAACFAACHWIYXYuRg4di6yc5E5hAABhAAhQAAhQAAhQAAhQAAhQAgQQGgZsXMx1DjsXGzQGCHH4ZTFHEKAAEKAAEKsQwqxczFw7Fxk5yJzCAECCAFCgABCgABCgABCgABCgBAggBAg8eVzC7e1ji/yrgQYI9Q4ldRA7puMEXIcTlnMIQQIII3pW+JH9mtsIA+S5nijF7GBXNejZDmm1KP52C57Z3RQfepWV2TzWGvhmI1rdsHP3zWsC3pe/hMNta3TvQa/Tq6yuMoiQACRVOPglgsyVvj5Mwe3XJCFvyF9rREObrkgNzT058+TOsYpq/xW66yeaUS3tTPhV5nLegsQLntZhxAggBAggFDjCn2Dqr3OrWrxVI0HZLsGdID3uAtIh55oMwfUZw45DYcXyJ5Mj2DNFWQiU5AvriB3s+R4qVeuT22Vhgq/B03/Ma59oQ9jU1CSEzqkzkwWmz80rH7uixIRERERERER/cd+AunRkoNlEgXUAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTEyLTIyVDE3OjM1OjUyKzAwOjAwwb2k+gAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0xMi0yMlQxNzozNTo1MiswMDowMLDgHEYAAAAASUVORK5CYII=)\n\
+    \nSpreadsheets anywhere allows you to read data from spreadsheets (CSVs, Excel,\
+    \ JSON) from cloud or local storage.\n\n## Data source settings\n\n### Files\n\
+    \nFiles takes JSON objects inside an Array to describe one or more target files.\n\
+    \nExample\n\n```json\n[{\n  \"path\":\"https://meltano.com/files\",\n  \"name\"\
+    :\"gitflixusers\",\n  \"pattern\":\"GitFlixUsers.csv\",\n  \"start_date\":\"2021-01-01T00:00:00Z\"\
+    ,\n  \"key_properties\":[\"id\"],\n  \"format\":\"csv\"\n}]\n```\n\nNote no trailing\
+    \ `/` on the path, or prefixed `/` on the pattern. \n\nSpreadsheets Anywhere will\
+    \ build the URL back up correctly, so in this case it will look for a file at\
+    \ `https://meltano.com/files/GitFlixUsers.csv`\n\nPassing the above array containing\
+    \ JSON to our files field will sync the data of the file `GitFlixUsers.csv` into\
+    \ your datastore under the table name `gitflixusers`.\n\n## Learn more\n\nThese\
+    \ documentation links contain an overview of how Spreadsheets Anywhere works,\
+    \ its settings, capabilities, a list of all supported formats and some more examples.\n\
+    \n[Spreadsheets Anywhere GitHub Documentation](https://github.com/ets/tap-spreadsheets-anywhere/blob/master/README.md)\n\
+    \n[Spreadsheets Anywhere - Meltano Hub Documentation](https://hub.meltano.com/extractors/spreadsheets-anywhere)"
+  docs: https://meltano.com/plugins/extractors/spreadsheets-anywhere.html
+  repo: https://github.com/ets/tap-spreadsheets-anywhere
+  pip_url: git+https://github.com/ets/tap-spreadsheets-anywhere.git
+  capabilities:
+  - state
+  - discover
+  - catalog
+  settings:
+  - name: tables
+    kind: array
+    label: Tables
+    description: An array holding json objects that each describe a set of targeted
+      source files. See docs for details.
+    protected: false
+- name: tap-google-analytics
+  namespace: tap_google_analytics
+  hidden: false
+  label: Google Analytics
+  description: "\n![Google Analytics](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCI+PGcgdHJhbnNmb3JtPSJtYXRyaXgoLjM2MzYzOCAwIDAgLjM2MzYzNiAtMy4yNzI3NjMgLTIuOTA5MDkxKSI+PHBhdGggZD0iTTEzMCAyOXYxMzJjMCAxNC43NyAxMC4yIDIzIDIxIDIzIDEwIDAgMjEtNyAyMS0yM1YzMGMwLTEzLjU0LTEwLTIyLTIxLTIycy0yMSA5LjMzLTIxIDIxeiIgZmlsbD0iI2Y5YWIwMCIvPjxnIGZpbGw9IiNlMzc0MDAiPjxwYXRoIGQ9Ik03NSA5NnY2NWMwIDE0Ljc3IDEwLjIgMjMgMjEgMjMgMTAgMCAyMS03IDIxLTIzVjk3YzAtMTMuNTQtMTAtMjItMjEtMjJzLTIxIDkuMzMtMjEgMjF6Ii8+PGNpcmNsZSBjeD0iNDEiIGN5PSIxNjMiIHI9IjIxIi8+PC9nPjwvZz48L3N2Zz4=)\n\
+    \nApp and website analytics platform hosted by Google\n\n## Prerequisites\n\n\
+    Before importing data from Google Analytics you or your webmaster will need to\
+    \ have performed some initial setup to grant\nyourself access to the Google Analytics\
+    \ for your website.\n\n[Google Analytics Prerequisites](https://www.matatika.com/docs/data-sources/tap-google-analytics/prerequisites)\n\
+    \n## Data source settings\n\n### View ID\n\nOnce you have connected with your\
+    \ google account, the `View ID` drop down will allow you to choose which view\
+    \ you want to get your data from.\n\n### Start Date\n\nProviding a start date\
+    \ allows you to set how much historical data you wish to import into you workspace.\
+    \ \n\nThis date has to be in the ISO-8601 date format, see the example below.\n\
+    \nFormat: `YYYY-MM-DDTHH:MM:SSZ`\n\nExample: `2020-10-01T13:12:11Z`\n\n### End\
+    \ Date\n\nProviding an end date allows you to limit how much data you wish to\
+    \ import into you workspace. \n\nThis date has to be in the ISO-8601 date format,\
+    \ see the example below.\n\nFormat: `YYYY-MM-DDTHH:MM:SSZ`\n\nExample: `2020-10-01T13:12:11Z`\n\
+    \n### Reports\n\nProviding the path to a reports json file allows you to supply\
+    \ the tap with a user defined definition of tables and information you want to\
+    \ sync from Google Analytics.\n\nThis does require you to commit a file to your\
+    \ workspace repository so that Google Analytics can find it during run time, and\
+    \ may also break the dbt transforms that are required to have our included datasets\
+    \ work.\n\nFor more information on how to define a custom reports file see the\
+    \ [Meltano Hub Documentation](https://hub.meltano.com/extractors/google-analytics#reports).\n\
+    \n## Learn more\n\nLearn more about the Google Analytics data source\n\n[Google\
+    \ Analytics Extractor Documentation](https://hub.meltano.com/extractors/google-analytics)\n\
+    \      "
+  image_url: /assets/images/datasource/tap-google-analytics.svg
+  variant: meltano
+  docs: https://www.matatika.com/docs/data-sources/tap-google-analytics/
+  repo: https://github.com/Matatika/tap-google-analytics
+  pip_url: git+https://github.com/Matatika/tap-google-analytics.git
+  capabilities:
+  - state
+  - discover
+  - catalog
+  settings:
+  - name: oauth_credentials.access_token
+    kind: hidden
+    label: Access Token
+    protected: false
+  - name: end_date
+    env_aliases:
+    - GOOGLE_ANALYTICS_API_END_DATE
+    kind: date_iso8601
+    label: End_date
+    protected: false
+    required: 'false'
+  - name: reports
+    env_aliases:
+    - GOOGLE_ANALYTICS_API_REPORTS
+    kind: string
+    label: Reports
+    placeholder: Ex. my_report_definition.json
+    protected: false
+    required: 'false'
+  - name: oauth_credentials.refresh_proxy_url
+    env_aliases:
+    - OAUTH_REFRESH_PROXY_URL
+    kind: hidden
+    label: Optional - will be called with 'oauth_credentials.refresh_token' to refresh
+      the access token
+    protected: false
+    required: 'false'
+  - name: oauth_credentials.refresh_token
+    kind: hidden
+    label: OAuth Refresh Token
+    protected: false
+  - name: view_id
+    env_aliases:
+    - GOOGLE_ANALYTICS_API_VIEW_ID
+    kind: string
+    label: View ID
+    placeholder: Ex. 198343027
+    protected: false
+  - name: oauth_credentials.refresh_proxy_url_auth
+    env_aliases:
+    - OAUTH_REFRESH_PROXY_URL_AUTH
+    kind: hidden
+    label: Optional - Sets Authorization header on 'oauth_credentials.refresh_url'
+      request
+    protected: false
+    required: 'false'
+  - name: oauth_credentials.scope
+    kind: hidden
+    value: profile email https://www.googleapis.com/auth/analytics.readonly
+    label: OAuth scopes we need to request access to
+    protected: false
+  - name: oauth_credentials.authorization_url
+    kind: hidden
+    value: https://oauth2.googleapis.com/token
+    label: OAuth identity provider authorization endpoint used create and refresh
+      tokens
+    protected: false
+  - name: oauth_credentials.client_id
+    kind: hidden
+    label: Optional - OAuth Client ID used if refresh_proxy_url not supplied
+    protected: false
+    required: 'false'
+  - name: oauth_credentials.client_secret
+    kind: hidden
+    label: Optional - OAuth Client Secret used if refresh_proxy_url not supplied
+    protected: false
+    required: 'false'
+  - name: start_date
+    env_aliases:
+    - GOOGLE_ANALYTICS_API_START_DATE
+    kind: date_iso8601
+    label: Start_date
+    protected: false
+loaders:
+- name: target-postgres
+  namespace: postgres
+  hidden: false
+  label: PostgreSQL
+  description: PostgreSQL database loader
+  variant: meltano
+  docs: https://meltano.com/plugins/loaders/postgres.html
+  repo: https://github.com/meltano/target-postgres
+  pip_url: git+https://github.com/meltano/target-postgres.git
+  settings:
+  - name: user
+    aliases:
+    - username
+    env_aliases:
+    - PG_USERNAME
+    - POSTGRES_USER
+    kind: string
+    value: warehouse
+    label: User
+    protected: false
+  - name: password
+    env_aliases:
+    - PG_PASSWORD
+    - POSTGRES_PASSWORD
+    kind: password
+    value: warehouse
+    label: Password
+    protected: false
+  - name: host
+    aliases:
+    - address
+    env_aliases:
+    - PG_ADDRESS
+    - POSTGRES_HOST
+    kind: string
+    value: localhost
+    label: Host
+    protected: false
+  - name: port
+    env_aliases:
+    - PG_PORT
+    - POSTGRES_PORT
+    kind: integer
+    value: 5502
+    label: Port
+    protected: false
+  - name: dbname
+    aliases:
+    - database
+    env_aliases:
+    - PG_DATABASE
+    - POSTGRES_DBNAME
+    kind: string
+    value: warehouse
+    label: Database Name
+    protected: false
+  - name: url
+    env_aliases:
+    - PG_URL
+    - POSTGRES_URL
+    kind: string
+    label: URL
+    description: Lets you set `user`, `password`, `host`, `port`, and `dbname` in
+      one go using a `postgresql://` URI. Takes precedence over the other settings
+      when set.
+    protected: false
+  - name: schema
+    env_aliases:
+    - PG_SCHEMA
+    - POSTGRES_SCHEMA
+    kind: string
+    value: $MELTANO_EXTRACT__LOAD_SCHEMA
+    label: Schema
+    protected: false
+transforms:
+- name: dbt-google-analytics
+  namespace: tap_google_analytics
+  hidden: false
+  label: Dbt Google Analytics
+  vars:
+    schema: '{{ env_var(''DBT_SOURCE_SCHEMA'') }}'
+  variant: meltano
+  repo: https://gitlab.com/meltano/dbt-tap-google-analytics
+  pip_url: https://gitlab.com/meltano/dbt-tap-google-analytics.git@config-version-2
+- name: dbt-solarvista
+  namespace: tap_solarvista
+  hidden: false
+  label: Dbt Solarvista
+  vars:
+    schema: '{{ env_var(''DBT_SOURCE_SCHEMA'') }}'
+  variant: matatika
+  repo: https://github.com/Matatika/dbt-tap-solarvista
+  pip_url: https://github.com/Matatika/dbt-tap-solarvista.git
+models:
+- name: model-google-analytics
+  namespace: tap_google_analytics
+  hidden: false
+  label: Model Google Analytics
+  variant: meltano
+  repo: https://gitlab.com/meltano/model-google-analytics
+  pip_url: git+https://gitlab.com/meltano/model-google-analytics.git
+transformers:
+- name: dbt
+  namespace: dbt
+  docs: https://meltano.com/docs/transforms.html
+  repo: https://github.com/fishtown-analytics/dbt
+  pip_url: dbt==0.19.1
+  settings:
+  - name: project_dir
+    value: $MELTANO_PROJECT_ROOT/transform
+  - name: profiles_dir
+    env: DBT_PROFILES_DIR
+    value: $MELTANO_PROJECT_ROOT/transform/profile
+  - name: target
+    value: $MELTANO_LOAD__DIALECT
+  - name: source_schema
+    value: $MELTANO_LOAD__TARGET_SCHEMA
+  - name: target_schema
+    value: analytics
+  - name: models
+    value: $MELTANO_TRANSFORM__PACKAGE_NAME $MELTANO_EXTRACTOR_NAMESPACE my_meltano_project
+  commands:
+    clean:
+      args: clean
+      description: Delete all folders in the clean-targets list (usually the dbt_modules
+        and target directories.)
+    compile:
+      args: compile --models $DBT_MODELS
+      description: Generates executable SQL from source model, test, and analysis
+        files. Compiled SQL files are written to the target/ directory.
+    deps:
+      args: deps
+      description: Pull the most recent version of the dependencies listed in packages.yml
+    run:
+      args: run --models $DBT_MODELS
+      description: Compile SQL and execute against the current target database.
+    seed:
+      args: seed
+      description: Load data from csv files into your data warehouse.
+    snapshot:
+      args: snapshot
+      description: Execute snapshots defined in your project.
+    test:
+      args: test
+      description: Runs tests on data in deployed models.
+files:
+- name: dbt
+  namespace: dbt
+  hidden: false
+  label: Dbt
+  update:
+    transform/profile/profiles.yml: 'true'
+  repo: https://gitlab.com/meltano/files-dbt
+  pip_url: git+https://gitlab.com/meltano/files-dbt.git@config-version-2
+- name: analyze-google-analytics
+  namespace: tap_google_analytics
+  hidden: false
+  label: Analyze Google Analytics
+  update:
+    analyze/datasets: 'true'
+  repo: https://github.com/Matatika/analyze-google-analytics
+  pip_url: git+https://github.com/Matatika/analyze-google-analytics.git
+- name: analyze-sit
+  namespace: tap_matatika_sit
+  hidden: false
+  update:
+    analyze/datasets/user-genders.yml: 'true'
+    analyze/datasets/user-ages.yml: 'true'
+  repo: https://github.com/Matatika/analyze-sit
+  pip_url: git+https://github.com/Matatika/analyze-sit.git
+- name: analyze-solarvista
+  namespace: tap_solarvista
+  hidden: false
+  label: Analyze Solarvista
+  update:
+    analyze/datasets: 'true'
+  repo: https://github.com/Matatika/analyze-solarvista
+  pip_url: git+https://github.com/Matatika/analyze-solarvista.git
