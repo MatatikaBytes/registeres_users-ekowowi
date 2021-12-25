@@ -5,6 +5,10 @@ plugins:
   extractors:
   - name: tap-spreadsheets-anywhere
     pip_url: git+https://github.com/ets/tap-spreadsheets-anywhere.git
+  loaders:
+  - name: target-postgres
+    variant: meltano
+    pip_url: git+https://github.com/meltano/target-postgres.git
   files:
   - name: dbt
     pip_url: git+https://gitlab.com/meltano/files-dbt.git@config-version-2
